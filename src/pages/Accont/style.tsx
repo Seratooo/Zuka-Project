@@ -1,6 +1,12 @@
 import styled from "styled-components/native";
 
 
+export const Container = styled.View`
+    flex: 1;
+    padding: 0px 20px;
+    /* justify-content: space-between; */
+`;
+
 export const TextTitlePage = styled.Text`
   font-size: 22px;
   font-weight: bold;
@@ -12,7 +18,7 @@ export const FlexContent = styled.View `
   justify-content: space-between;
   width: 100%;
   flex-direction: row;
-  padding: 0 10px;
+  /* padding: 0 10px; */
   margin: 40px 0;
 `
 export const FlexRow = styled.View `
@@ -37,11 +43,10 @@ export const TextMoney = styled.Text`
   color: #000;
   font-weight: bold;
 `
-export const ContainerDeposit = styled.View`
+export const ContainerDeposit = styled.Pressable`
   align-items: center;
   justify-content: center;
   padding: 25px;
   border: 1px solid black;
   border-radius: 20px;
-  margin: 0 20px;
 `

@@ -7,22 +7,26 @@ interface IText {
 export const Container = styled.View`
   flex: 1;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   background-color: #fff;
-  padding: 0px 16px;
+  padding: 50px 16px;
 `;
 
 export const ContainerInformation = styled.View`
-  margin-top: 50px;
+  /* margin-top: 100px; */
   width: 100%;
   padding: 10px 20px;
 `;
 
+export const ContainerFooter = styled.View`
+  /* flex: 1; */
+  align-items: center;
+
+`
+
 export const Text = styled.Text<IText>`
-  position: absolute;
-  bottom: 120px;
-  width: 100%;
   font-size: 14px;
   text-align: center;
+  /* margin-bottom: 30px; */
   color: ${props => (props.term ? '#E1B860' : '#717E95')};
 `;

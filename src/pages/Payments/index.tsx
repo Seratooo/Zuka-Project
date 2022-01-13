@@ -2,7 +2,6 @@ import React from 'react'
 import {Text, FlatList, TouchableOpacity, Image } from 'react-native'
 import { TextTitle, TextTitleThin, FlexContentRow, TextAction, SearchBarView, ContentView, TextSection, FlexColum, TextSimple} from './style';
 import {TextInput} from 'react-native-paper'
-import LogoNFC from '../../assets/Vector.png'
 import CardFunctional from '../../Components/cardFunctional/indext';
 const Payments = () =>{
 
@@ -49,9 +48,9 @@ const Payments = () =>{
 
         <TextTitleThin>Pagamento</TextTitleThin>
         
-        <CardFunctional img={LogoNFC} Title="NFC" />
-        <CardFunctional img={LogoNFC} Title="Partilhado" />
-        <CardFunctional img={LogoNFC} Title="QR" />
+        <CardFunctional img={require('../../assets/Vector.png')} Title="NFC" />
+        <CardFunctional img={require('../../assets/Vector.png')} Title="Partilhado" />
+        <CardFunctional img={require('../../assets/Vector.png')} Title="QR" />
 
       </>
   );

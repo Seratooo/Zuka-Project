@@ -6,6 +6,7 @@ import { ContainerName, Container,TextFildInfo, FlexRowContainer, ContainerTextF
 import { TabView, SceneMap } from 'react-native-tab-view';
 import renderTabBar from './tabStyles'
 import {TextInput} from 'react-native-paper'
+import { useNavigation } from '@react-navigation/native'
 
 
 const Settings = () => {
@@ -53,12 +54,14 @@ const Settings = () => {
     { key: 'second', title: 'Definições' },
   ]);
 
+  const navigation = useNavigation();
+
   return(
      <>
      <TopBar>
-        <Icon name="arrow-left" size={30} color="#000" />
+        <Icon name="arrow-left" size={32} color="#000" onPress={()=> navigation.goBack()}/>
         <SimpleText>Menu</SimpleText>
-        <Icon name="pencil" size={30} color="#000" />
+        <Icon name="pencil" size={32} color="#000" />
       </TopBar>
 
       <FlexRowContainer>

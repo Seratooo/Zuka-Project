@@ -7,8 +7,9 @@ interface IText {
 export const Container = styled.View`
   flex: 1;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   background-color: #fff;
+  padding: 0px 10px;
 `;
 export const Text = styled.Text<IText>`
   font-size: ${props => (props.title ? '20px' : '16px')};
@@ -18,7 +19,7 @@ export const Text = styled.Text<IText>`
 `;
 
 export const ContainerInformation = styled.View`
-  margin-top: 50px;
+  margin: 50px 0px;
   width: 100%;
   padding: 10px 20px;
 `;

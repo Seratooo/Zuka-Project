@@ -1,37 +1,36 @@
 import React from 'react'
-import {Text, Image, View} from 'react-native'
+import { Text, Image, View } from 'react-native';
 import { TopBar } from '../../Elements/Elements';
-import Icon from 'react-native-vector-icons/Feather'
-import { TextTitlePage, FlexContent, FlexRow, TextName, TextSimple, ContainerDeposit, TextMoney } from './style';
+import { Container, TextTitlePage, FlexContent, FlexRow, TextName, TextSimple, ContainerDeposit, TextMoney } from './style';
 import CreditCard from '../../Components/creditCard';
+import { useNavigation } from '@react-navigation/native';
 
-const Accont = () =>{
-
-  return(
-    <>
-     <TopBar>
+const Accont = () => {
+  const navigation = useNavigation();
+  return (
+    <Container>
+      <TopBar>
         <TextTitlePage>Cartões</TextTitlePage>
-        <Icon name="settings" size={30} color="#000" />
       </TopBar>
 
       <FlexContent>
-      <FlexRow>
-        <Image source={require('../../assets/Ellipse1.png')}/>
-        <View>
-        <TextName>Mateus</TextName>
-        <TextSimple>Saldo disponível</TextSimple>
-        </View>
-      </FlexRow>
-      <TextName>320.000KZ</TextName>
-    </FlexContent>
-    
-    <ContainerDeposit>
-      <Image source={require('../../assets/money.png')} />
-      <TextMoney>Depositar</TextMoney>
-    </ContainerDeposit>
+        <FlexRow>
+          <Image source={require('../../assets/Ellipse1.png')} />
+          <View>
+            <TextName>Mateus</TextName>
+            <TextSimple>Saldo disponível</TextSimple>
+          </View>
+        </FlexRow>
+        <TextName>320.000KZ</TextName>
+      </FlexContent>
 
-    <CreditCard />
-    </>
+      <ContainerDeposit onPress={() => navigation.navigate('Deposit')}>
+        <Image source={require('../../assets/money.png')} />
+        <TextMoney>Depositar</TextMoney>
+      </ContainerDeposit>
+
+      {/* <CreditCard /> */}
+    </Container>
   )
 }
 

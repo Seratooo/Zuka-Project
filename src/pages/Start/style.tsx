@@ -8,15 +8,17 @@ export const Container = styled.View`
     align-items: center;
     justify-content: center;
     background-color: #fff;
+    padding: 0px 10px;
 `;
 
 export const ContainerInformation = styled.View`
     align-items: center;
     justify-content: center;
+    margin-bottom: 150px;
 `
 
 export const Image = styled.Image`
-    margin-top: -350px;
+    /* margin-top: -350px; */
 `
 
 export const Text = styled.Text<IText>`

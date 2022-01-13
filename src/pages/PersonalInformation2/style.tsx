@@ -5,8 +5,10 @@ interface IText {
 }
 
 export const Container = styled.View`
+  flex:1;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0px 10px;
   background-color: #fff;
 `;
 

@@ -11,9 +11,9 @@ export const FlexContent = styled.View `
 `
 
 
-export const FlexRow = styled.View `
+export const FlexRow = styled.Pressable `
   align-items: center;
-  justify-content: center;
+
   flex-direction: row;
 `
 export const FlexColum = styled.View `
