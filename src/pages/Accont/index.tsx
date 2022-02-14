@@ -23,7 +23,7 @@ const Accont = () => {
             <TextSimple>Saldo disponível</TextSimple>
           </View>
         </FlexRow>
-        <TextName>{context.account[0].balance}KZ</TextName>
+        <TextName>{context.account.balance}KZ</TextName>
       </FlexContent>
 
       <ContainerDeposit onPress={() => navigation.navigate('Deposit')}>

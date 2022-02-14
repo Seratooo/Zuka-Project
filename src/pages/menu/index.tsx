@@ -17,32 +17,21 @@ const Menu = () => {
   const navigate = useNavigation();
   const context = useContext(AuthContext);
   const [transations, setTransations] = useState(Array<Object>())
-  // const [accounts, setAccounts] = useState(Array<Object>())
+  const [accounts, setAccounts] = useState({})
   const { id_user } = context.user;
-  let { account } = context;
-  let accounts: Array<object>;
+  let { setAccount } = context;
 
   useEffect(() => {
 
     async function init() {
-      let url = 'https://zuka-app.herokuapp.com/account/' + id_user;
-      console.log(url);
-      const response = await axios.get(url);
-      console.log(response.data)
+      const response = await axios.get(`https://zuka-app.herokuapp.com/account/${id_user}`);
+      setAccounts(response.data);
+      // console.warn(account)
+      setAccount(accounts);
     }
     init()
-  }, [account.length == 0]);
+  }, [accounts]);
 
-  // useEffect(() => {
-  //   async function init() {
-  //     const responseAccount = await getAccount(id_user);
-  //     setAccounts(responseAccount);
-  //     console.warn(responseAccount)
-  //   }
-
-  //   init();
-  // }, [accounts])
-  // console.warn(accounts)
   return (
     <>
       <FlexContent>
@@ -56,9 +45,9 @@ const Menu = () => {
       <TextSection>Saldo</TextSection>
       <ContentView>
         <FlatList
-          data={[{}]}
+          data={[accounts]}
           horizontal
-          renderItem={({ index, item }) => <Saldo key={1} amount={item.balance} coin={item.coin} />}
+          renderItem={({ index, item }) => (<Saldo key={index} amount={item.balance} coin={item.coin} />)}
         />
       </ContentView>
 

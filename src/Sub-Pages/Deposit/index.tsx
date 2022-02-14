@@ -13,7 +13,7 @@ const Deposit = () => {
     const context = useContext(AuthContext);
     const [coin, setCoin] = useState('');
     const [amount, setAmount] = useState('');
-    const id = context.account[0].id_account;
+    const id = context.account.id_account;
     async function press(){
 
        const response = await axios.post('https://zuka-app.herokuapp.com/account/deposit',{

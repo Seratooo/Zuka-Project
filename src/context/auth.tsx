@@ -1,12 +1,14 @@
 import React, { createContext, useState, useEffect, useCallback } from 'react'
 import AsyncStorage from '@react-native-community/async-storage';
 import { login, getAddress, getAccount } from '../services/auth';
+import axios from 'axios';
 
 interface AuthContextData {
     signed: boolean;
     user: object | null;
     address: object | null;
     account: Array<object>;
+    setAccount: Function;
     signIn(newUser: object | null, newAddress: object | null): Promise<void>;
     logar(email: string, password: string): Promise<object>;
     singOut(): void;
@@ -17,9 +19,7 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 export const AuthProvider: React.FC = ({ children }) => {
     const [user, setUser] = useState<object | null>(null)
     const [address, setAddress] = useState<object | null>(null)
-    let account: Array<object> = [];
-
-
+    const [account, setAccount] = useState<object>({})
 
     useEffect(() => {
 
@@ -53,7 +53,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         await AsyncStorage.clear().then(() => {
             setUser(null);
             setAddress(null);
-            account = [];
+            setAccount({});
         })
     }
 
@@ -65,7 +65,7 @@ export const AuthProvider: React.FC = ({ children }) => {
             const addressResponse = await getAddress(id_user);
             setAddress(addressResponse);
             const responseAccount = await getAccount(id_user);
-            account.push(responseAccount)
+            setAccount(responseAccount);
             await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(response));
             await AsyncStorage.setItem('@RNAuth:address', JSON.stringify(addressResponse));
 
@@ -76,7 +76,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     return (
         <AuthContext.Provider value={{
-            signed: (!!user), user, address, account, signIn, singOut, logar
+            signed: (!!user), user, address, account, setAccount,signIn, singOut, logar
         }}>
             {children}
         </AuthContext.Provider>
