@@ -10,6 +10,8 @@ interface data {
 }
 
 const cardMov = (props: data) =>{
+  const {Description, Title, price} = props
+  const date = new Date(Description)
   return (
      <Content>
       <ViewDefault>  
@@ -22,11 +24,11 @@ const cardMov = (props: data) =>{
          /> 
          <FlexColumn>
             <TextName>{props.Title}</TextName>
-            <TextDescription>{props.Description}</TextDescription>
+            <TextDescription>{`${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`}</TextDescription>
          </FlexColumn>
          </FlexRow>
          
-         <TextPrice>{props.price} </TextPrice>
+         <TextPrice>{props.price} KZ</TextPrice>
       </ViewDefault>
       </Content>
   )

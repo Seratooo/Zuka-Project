@@ -31,7 +31,7 @@ const Authentication = () => {
              if(!response.data)
                 console.log("Erro")
             else
-            context.user = response.data;
+            context.setUser(response.data);
             
         }catch(error){
             console.log(error);

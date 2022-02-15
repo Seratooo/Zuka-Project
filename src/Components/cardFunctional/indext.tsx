@@ -6,12 +6,13 @@ import { Content, ContentElemnt,TextTitle } from './style'
 interface dados{
   img: any;
   Title: String;
+  press: Function
 }
 
 const CardFunctional = (props: dados) => {
   return(
 
-    <Content>
+    <Content onPress={() => props.press()}>
        <ContentElemnt>
        <Image source={props.img}/>
        <TextTitle>{props.Title}</TextTitle>

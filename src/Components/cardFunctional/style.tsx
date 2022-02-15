@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 
 
-export const Content = styled.View`
+export const Content = styled.Pressable`
   padding: 10px;
 `
 

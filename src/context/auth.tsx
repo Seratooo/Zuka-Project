@@ -7,8 +7,12 @@ interface AuthContextData {
     signed: boolean;
     user: object | null;
     address: object | null;
-    account: Array<object>;
+    account: object;
+    payment:object;
     setAccount: Function;
+    setUser: Function;
+    setAddress: Function;
+    setPayment: Function;
     signIn(newUser: object | null, newAddress: object | null): Promise<void>;
     logar(email: string, password: string): Promise<object>;
     singOut(): void;
@@ -20,6 +24,9 @@ export const AuthProvider: React.FC = ({ children }) => {
     const [user, setUser] = useState<object | null>(null)
     const [address, setAddress] = useState<object | null>(null)
     const [account, setAccount] = useState<object>({})
+    const [payment, setPayment] = useState<object>({})
+
+
 
     useEffect(() => {
 
@@ -76,7 +83,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     return (
         <AuthContext.Provider value={{
-            signed: (!!user), user, address, account, setAccount,signIn, singOut, logar
+            signed: (!!user && !!address), user, address, account,setAddress,payment,setPayment ,setUser,setAccount,signIn, singOut, logar
         }}>
             {children}
         </AuthContext.Provider>

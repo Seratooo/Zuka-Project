@@ -4,8 +4,13 @@ import { TextTitle, TextTitleThin, FlexContentRow, TextAction, SearchBarView, Co
 import {TextInput} from 'react-native-paper'
 import CardFunctional from '../../Components/cardFunctional/indext';
 import AuthContext from '../../context/auth';
+import { useNavigation } from '@react-navigation/native';
+// import NfcManager,{NfcTech} from 'react-native-nfc-manager';
+
 const Payments = () =>{
   const context = useContext(AuthContext);
+  const navigation = useNavigation();
+  // 
   return(
       <>
         <TextTitle>Pagamento</TextTitle>     
@@ -19,7 +24,7 @@ const Payments = () =>{
           />
         </SearchBarView> 
 
-        <ContentView>
+        {/* <ContentView>
           <FlexContentRow>
             <TextSection>Contactos</TextSection>
             <TextAction>Ver todos</TextAction>
@@ -45,13 +50,13 @@ const Payments = () =>{
             </>
           )}
           />
-        </ContentView>
+        </ContentView> */}
 
         <TextTitleThin>Pagamento</TextTitleThin>
         
-        <CardFunctional img={require('../../assets/Vector.png')} Title="NFC" />
-        <CardFunctional img={require('../../assets/Vector.png')} Title="Partilhado" />
-        <CardFunctional img={require('../../assets/Vector.png')} Title="QR" />
+        {/* <CardFunctional img={require('../../assets/Vector.png')} Title="NFC" />
+        <CardFunctional img={require('../../assets/Vector.png')} Title="Partilhado" /> */}
+        <CardFunctional img={require('../../assets/Vector.png')} Title="QR" press={()=>navigation.navigate('submitPayment')}/>
 
       </>
   );

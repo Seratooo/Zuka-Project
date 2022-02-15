@@ -4,7 +4,9 @@ export const Content = styled.View`
  padding: 0 10px;
 `
 export const ViewDefault = styled.View`
-  background: #ddd;
+      background-color: #F2F2F7;
+    border: 1px solid #525758;
+    border-radius: 5px;
   padding: 20px;
   margin: 10px 0;
   justify-content: space-between;
@@ -36,9 +38,10 @@ export const TextDescription = styled.Text`
   font-weight: bold;
 `
 export const TextPrice = styled.Text`
+  color: #444;
   font-size: 14px;
   padding-left: 5px;
   font-weight: bold;
 `
-  
+
 

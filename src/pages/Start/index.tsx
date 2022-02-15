@@ -21,8 +21,8 @@ const Start: FC = () => {
                 <Text title>Zuka</Text>
                 <Text>Fazendo a sua vida mais fácil</Text>
             </ContainerInformation>
-            <Button text="Continuar" onPress={() => navivgation.navigate('Authentication') }/>
             <Button text="Login" onPress={() => navivgation.navigate('login') }/>
+            <Button text="Cadastrar" onPress={() => navivgation.navigate('Authentication') }/>
         </Container>
     )
 }

@@ -16,9 +16,9 @@ const PersonalInformation2: FC<{}> = (props) => {
   const navigation = useNavigation();
   const context = useContext(AuthContext);
 
-  const {id_user} = context.user;
-
+  
   async function press() {
+    const {id_user} = context.user;
     try{
       const response = await axios.post('https://zuka-app.herokuapp.com/user/address',{
         id_user,
@@ -27,12 +27,13 @@ const PersonalInformation2: FC<{}> = (props) => {
         street,
        });    
 
-      await axios.post('https://zuka-app.herokuapp.com/account',{
+      const responseAcc = await axios.post('https://zuka-app.herokuapp.com/account',{
         id_user,
         coin:'AOA'
        }); 
        
-       context.address = response.data;
+       context.setAccount(responseAcc.data);
+       context.setAddress(response.data);
   }catch(error){
       console.log(error);
   }

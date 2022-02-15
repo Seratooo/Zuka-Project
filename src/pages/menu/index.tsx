@@ -7,9 +7,6 @@ import CardMov from '../../Components/cardMov';
 import Saldo from './Components/Saldo';
 import AuthContext from '../../context/auth';
 import axios from 'axios';
-import { getAccount } from '../../services/auth';
-
-
 
 
 const Menu = () => {
@@ -26,6 +23,12 @@ const Menu = () => {
     async function init() {
       const response = await axios.get(`https://zuka-app.herokuapp.com/account/${id_user}`);
       setAccounts(response.data);
+      if(accounts.id_account){
+        const responseTransation = await axios.get(`https://zuka-app.herokuapp.com/account/transation/${accounts.id_account}`);
+        setTransations(responseTransation.data);
+
+      }
+
       // console.warn(account)
       setAccount(accounts);
     }
@@ -39,7 +42,7 @@ const Menu = () => {
           <Image source={require('../../assets/Ellipse1.png')} />
           <TextName>Olá, {context.user.name}</TextName>
         </FlexRow>
-        <Icon name='qrcode' size={30} color={'#b57d03'} ></Icon>
+        <Icon name='qrcode' size={30} color={'#b57d03'} onPress={()=>navigate.navigate('qr')}></Icon>
       </FlexContent>
 
       <TextSection>Saldo</TextSection>
@@ -59,9 +62,9 @@ const Menu = () => {
             <CardMov
               key={index}
               img={require('../../assets/Ellipse1.png')}
-              Title="KFC"
-              Description="13 de Novembro"
-              price="2.000 KZ"
+              Title={item.type}
+              Description={item.created_at}
+              price={item.amount}
             />
           )}
         />

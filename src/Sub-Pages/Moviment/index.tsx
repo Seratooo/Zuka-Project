@@ -13,9 +13,9 @@ const Moviment = () => {
     const snapPoints = useMemo(() => ['10%', '25%'], []);
 
     // callbacks
-    const handleSheetChanges = useCallback((index: number) => {
-        console.log('handleSheetChanges', index);
-    }, []);
+    // const handleSheetChanges = useCallback((index: number) => {
+    //     console.log('handleSheetChanges', index);
+    // }, []);
 
     const navigation = useNavigation();
 
@@ -26,7 +26,7 @@ const Moviment = () => {
                 ref={bottomSheetRef}
                 index={1}
                 snapPoints={snapPoints}
-                onChange={handleSheetChanges}
+                // onChange={handleSheetChanges}        
             >
                 <ContainerModal>
                     <ContainerContent 

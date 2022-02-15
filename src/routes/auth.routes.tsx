@@ -11,6 +11,10 @@ import Settings from "../Sub-Pages/Settings";
 import Deposit from "../Sub-Pages/Deposit";
 import AuthContext from "../context/auth";
 import Login from "../pages/Login";
+import TransferBank from "../Sub-Pages/TransferBank";
+import QR from "../Sub-Pages/QR";
+import SubmitPayment from "../Sub-Pages/SubmitPayment";
+import PageQR from "../Sub-Pages/PageQR";
 
 const AuthStack = createNativeStackNavigator();
 
@@ -32,6 +36,27 @@ const AuthRoute: React.FC = () => {
                 name="login"
                 component={Login}
             />
+            <AuthStack.Screen
+                options={{ headerShown: false }}
+                name="transferBank"
+                component={TransferBank}
+            />
+            <AuthStack.Screen
+                options={{ headerShown: false }}
+                name="qr"
+                component={QR}
+            />
+            <AuthStack.Screen
+                options={{ headerShown: false }}
+                name="submitPayment"
+                component={SubmitPayment}
+            />
+            <AuthStack.Screen
+                options={{ headerShown: false }}
+                name="pageQR"
+                component={PageQR}
+            />
+
             <AuthStack.Screen
                 options={{ headerShown: false }}
                 name="Authentication"

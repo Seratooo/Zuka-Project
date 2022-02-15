@@ -4,8 +4,9 @@ import { TextTitle, TextTitleThin, FlexContentRow, TextAction, SearchBarView, Co
 import {TextInput} from 'react-native-paper'
 import LogoNFC from '../../assets/Vector.png'
 import CardFunctional from '../../Components/cardFunctional/indext';
+import { useNavigation } from '@react-navigation/native';
 const Transfers = () =>{
-
+  const navigation = useNavigation();
   return(
       <>
         <TextTitle>Transferência</TextTitle>     
@@ -19,7 +20,7 @@ const Transfers = () =>{
           />
         </SearchBarView> 
 
-        <ContentView>
+        {/* <ContentView>
           <FlexContentRow>
             <TextSection>Contactos</TextSection>
             <TextAction>Ver todos</TextAction>
@@ -45,13 +46,13 @@ const Transfers = () =>{
             </>
           )}
           />
-        </ContentView>
+        </ContentView> */}
 
         <TextTitleThin>Transferência</TextTitleThin>
         
-        <CardFunctional img={LogoNFC} Title="NFC" />
-        <CardFunctional img={LogoNFC} Title="P2P" />
-        <CardFunctional img={LogoNFC} Title="Bancária" />
+        {/* <CardFunctional img={LogoNFC} Title="NFC" press={() => navigation.navigate('')}/>
+        <CardFunctional img={LogoNFC} Title="P2P" press={() => navigation.navigate('')}/> */}
+        <CardFunctional img={LogoNFC} Title="Bancária" press={() => navigation.navigate('transferBank')}/>
 
       </>
   );
