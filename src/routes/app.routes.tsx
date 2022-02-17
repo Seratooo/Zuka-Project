@@ -1,12 +1,10 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext} from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Feather from 'react-native-vector-icons/Feather'
 import Menu from "../pages/menu";
-// import Transfers from "../pages/Transfers";
-// import Payment from '../pages/Payments'
 import Accont from "../pages/Accont";
-import Moviment from "../Sub-Pages/Moviment";
+import Transactions from "../pages/Moviment";
 import AuthContext from '../context/auth';
 import axios from "axios";
 
@@ -51,7 +49,7 @@ const AppRoute: React.FC = () => {
                     unmountOnBlur: true
                 }}
                 name="Moviment"
-                component={Moviment} />
+                component={Transactions} />
 
             <Tap.Screen
                 options={{
