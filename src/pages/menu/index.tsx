@@ -5,10 +5,25 @@ import { FlexRow, ContentView, TextName, FlexContent, TextSection } from './styl
 import Icon from 'react-native-vector-icons/FontAwesome';
 import CardMov from '../../Components/cardMov';
 import Saldo from './Components/Saldo';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamListBottomTab } from '../../routes/app.routes';
 
 
+type Props = NativeStackScreenProps<RootStackParamListBottomTab, 'menu'>;
 
-const Menu = () => {
+const Menu = ({route}:Props) => {
+
+  const {
+    id_user,
+    name,
+    email,
+    dataBirthday,
+    password,
+    confirmPassword,
+    country,
+    city,
+    street
+  } = route.params
 
   const navigate = useNavigation();
 
@@ -17,7 +32,7 @@ const Menu = () => {
       <FlexContent>
         <FlexRow onPress={() => navigate.navigate('Settings')}>
           <Image source={require('../../assets/Ellipse1.png')} />
-          <TextName>Olá, Mateus</TextName>
+          <TextName>Olá, {name}</TextName>
         </FlexRow>
         <Icon name='qrcode' size={30} color={'#b57d03'} ></Icon>
       </FlexContent>

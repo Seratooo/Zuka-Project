@@ -4,9 +4,25 @@ import { TopBar } from '../../Elements/Elements';
 import { Container, TextTitlePage, FlexContent, FlexRow, TextName, TextSimple, ContainerDeposit, TextMoney } from './style';
 import CreditCard from '../../Components/creditCard';
 import { useNavigation } from '@react-navigation/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamListBottomTab } from '../../routes/app.routes';
 
-const Accont = () => {
+type Props = NativeStackScreenProps<RootStackParamListBottomTab, 'account'>;
+
+const Accont = ({route}:Props) => {
   const navigation = useNavigation();
+  const {
+    id_user,
+    name,
+    email,
+    dataBirthday,
+    password,
+    confirmPassword,
+    country,
+    city,
+    street
+  } = route.params
+
   return (
     <Container>
       <TopBar>
@@ -17,7 +33,7 @@ const Accont = () => {
         <FlexRow>
           <Image source={require('../../assets/Ellipse1.png')} />
           <View>
-            <TextName>Mateus</TextName>
+            <TextName>{name}</TextName>
             <TextSimple>Saldo disponível</TextSimple>
           </View>
         </FlexRow>

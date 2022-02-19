@@ -5,9 +5,16 @@ import Icon from 'react-native-vector-icons/Feather';
 import Button from '../../Components/Button';
 import { TopBar, Title, TextDescription, View, Container } from '../../Elements/Elements';
 import { Input, TextDetached } from './style';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../routes/auth.routes';
 
-const VerificationCode = (route:{params: any}) => {
-  
+type Props = NativeStackScreenProps<RootStackParamList, 'Verification'>;
+
+
+const VerificationCode = ({route}:Props) => {
+
+  const navigation = useNavigation();
+
   const {
             id_user,
             name,
@@ -15,10 +22,7 @@ const VerificationCode = (route:{params: any}) => {
             dataBirthday,
             password,
             confirmPassword,
-
-  } = route.params;
-
-  const navigation = useNavigation();
+  } = route.params
   return (
     <View>
       <Container>
@@ -29,7 +33,7 @@ const VerificationCode = (route:{params: any}) => {
         </TopBar>
         <Title>Verificação</Title>
         <TextDescription>
-          Verifica no seu telefone o código de confirmação
+         Olá {name}, verifique o código de confirmação no seu dispositivo.
         </TextDescription>
         <Input
           keyboardType={Platform.OS === 'android' ? 'numeric' : 'number-pad'}
@@ -40,7 +44,14 @@ const VerificationCode = (route:{params: any}) => {
 
       </Container>
       <Button text="Validar Código" onPress={() => {
-        navigation.navigate('PersonalInformation2');
+        navigation.navigate('PersonalInformation2',{
+          id_user,
+          name,
+          email,
+          dataBirthday,
+          password,
+          confirmPassword,
+        });
         
         }} />
     </View>
