@@ -6,7 +6,18 @@ import Button from '../../Components/Button';
 import { TopBar, Title, TextDescription, View, Container } from '../../Elements/Elements';
 import { Input, TextDetached } from './style';
 
-const VerificationCode = () => {
+const VerificationCode = (route:{params: any}) => {
+  
+  const {
+            id_user,
+            name,
+            email,
+            dataBirthday,
+            password,
+            confirmPassword,
+
+  } = route.params;
+
   const navigation = useNavigation();
   return (
     <View>

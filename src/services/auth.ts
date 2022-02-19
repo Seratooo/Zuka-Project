@@ -10,9 +10,11 @@ interface IResponse{
     user: object; 
 }
 
-axios.create({
-    baseURL: "http://192.168.0.53:8080/",
+const Axios = axios.create({
+    baseURL: "https://zuka-app.herokuapp.com/",
 });
+
+export default Axios;
 
 export async function signIn():Promise<void>{
 

@@ -9,8 +9,29 @@ import AppRoute from "./app.routes";
 import Payments from "../pages/Payments";
 import Settings from "../Sub-Pages/Settings";
 import Deposit from "../Sub-Pages/Deposit";
+import {NavigationContainer} from '@react-navigation/native';
 
-const AuthStack = createNativeStackNavigator();
+
+const AuthStack = createNativeStackNavigator<RootStackParamList>();
+
+export type RootStackParamList = {
+    start: undefined;
+    Authentication: undefined;
+    Verification: {
+        id_user: string;
+        name: string;
+        email: string;
+        dataBirthday: string;
+        password: string;
+        confirmPassword: string;
+    };
+    PersonalInformation2: undefined;
+    auth: undefined;
+    transfer: undefined;
+    payment: undefined;
+    Settings: undefined;
+    Deposit: undefined;
+  };
 
 
 const AuthRoute: React.FC = () => {
