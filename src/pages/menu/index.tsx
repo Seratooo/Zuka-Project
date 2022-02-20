@@ -12,43 +12,11 @@ import AuthContext from '../../context/auth';
 const Menu = () => {
 
 
-  const transations = [{
-    id: '1',
-    type: 'Rra',
-    amount: '1000',
-  }, {
-    id: '2',
-    type: 'dwe',
-    amount: '1000',
-  }, {
-    id: '3',
-    type: 'dsa',
-    amount: '1000',
-  }, {
-    id: '4',
-    type: 'sda',
-    amount: '1000',
-  }, {
-    id: '5',
-    type: 'dasd',
-    amount: '1000',
-  }, {
-    id: '6',
-    type: 'dasd',
-    amount: '1000',
-  }, {
-    id: '7',
-    type: 'dasd',
-    amount: '1000',
-  }, {
-    id: '8',
-    type: 'dasd',
-    amount: '1000',
-  }]
+ 
 
   const navigate = useNavigation();
   const context = useContext(AuthContext);
-  //const [transations, setTransations] = useState(Array<Object>())
+  const [transations, setTransations] = useState(Array<Object>())
   const [accounts, setAccounts] = useState({})
   const { id_user } = context.user;
   let { setAccount } = context;
