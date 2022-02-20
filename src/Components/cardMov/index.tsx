@@ -5,7 +5,7 @@ import { ViewDefault, FlexColumn, TextName, TextDescription, FlexRow, TextPrice,
 interface data {
   img: any;
   Title: String;
-  Description: String;
+  Description?: String;
   price: String;
 }
 

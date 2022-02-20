@@ -1,22 +1,18 @@
 import React, { FC, useContext, useEffect, useState } from "react";
-import { Container, Text, ContainerInformation, Image } from './style';
+import { Container, Text, ContainerInformation, Image, style } from './style';
 import { useNavigation } from '@react-navigation/native';
 import Button from "../../Components/Button";
 import Input from "../../Components/Input";
 import AuthContext from "../../context/auth";
-import { Dimensions, Modal } from "react-native";
-import Svg, { Circle } from "react-native-svg";
-import Animated, { useAnimatedProps, useSharedValue, withTiming } from "react-native-reanimated"; { }
+import { ActivityIndicator, Modal } from "react-native";
 
-const BACKGROUND_COLOR = '#44486F';
-const BACKGROUND_STROKE_COLOR = '#303858';
-const STROKE_COLOR = '#A6E1FA'
 
-const { width, height } = Dimensions.get('window');
-const CIRCLE_LENGTH = 1000;
-const R = CIRCLE_LENGTH / (2 * Math.PI);
 
-const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+import { View } from "../../Elements/Elements";
+import Icon from 'react-native-vector-icons/Entypo';
+
+
+
 
 
 
@@ -56,23 +52,38 @@ const Login: FC = () => {
     }
 
     const [stateLoad, setStateLoad] = useState(false);
+    const [stateSign, setStateSign] = useState(false);
+    const [stateError, setStateError] = useState(false);
 
 
-    const progress = useSharedValue(0);
-    useEffect(() => {
-        progress.value = withTiming(1, { duration: 5000 });
-    }, []);
 
-    const animatedProps = useAnimatedProps(() => ({
-        strokeDashoffset: CIRCLE_LENGTH * (1 - progress.value),
-    }));
+    const callSpinLoad = () => {
+        setStateLoad(true);
+        signIn(email, password);
+
+    };
 
     return (
 
         <Container>
+
+            <Modal transparent={true} visible={stateError} >
+                <View style={[style.container]}>
+                    <View style={[{ height: 300, width: 300 }]}>
+
+
+                        <View style={style.errorContent}>
+
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+
+
+
             <Modal
-                transparent={true}
-                visible={stateLoad}
+
+                visible={stateSign}
             >
 
 
@@ -82,32 +93,12 @@ const Login: FC = () => {
 
 
             <Modal
-                animationType="fade"
                 transparent={true}
                 visible={stateLoad}
-
             >
-                <Svg style={{ backgroundColor: '#000000aa', flex: 1 }}>
-                    <Circle
-                        cx={width / 2}
-                        cy={height / 2}
-                        r={R}
-                        stroke={BACKGROUND_STROKE_COLOR}
-                        strokeWidth={30}
-                    />
-                    <AnimatedCircle
-                        cx={width / 2}
-                        cy={height / 2}
-                        r={R}
-                        stroke={STROKE_COLOR}
-                        strokeWidth={15}
-                        strokeDasharray={CIRCLE_LENGTH}
-                        animatedProps={animatedProps}
-                        strokeLinecap={'round'}
-                    />
-                </Svg>
-
-
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <ActivityIndicator size={100} color={'#E1B860'} />
+                </View>
             </Modal>
             <Text title>Zuka</Text>
             <ContainerInformation>
@@ -116,12 +107,14 @@ const Login: FC = () => {
                     value={email}
                     onChangeText={(text: React.SetStateAction<string>) => setEmail(text)}
                 />
-                <Input label="Password" placeholder="*********"
+                <Input
+
+                    label="Password" placeholder="*********"
                     value={password}
                     onChangeText={(text: React.SetStateAction<string>) => setPassword(text)}
                 />
             </ContainerInformation>
-            <Button text="Login" onPress={() => { signIn(email, password); setStateLoad(true) }} />
+            <Button text="Login" onPress={callSpinLoad} />
         </Container>
 
 

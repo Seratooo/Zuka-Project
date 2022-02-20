@@ -3,8 +3,9 @@ import { style } from './style';
 import { useNavigation } from '@react-navigation/native';
 import Button from "../../Components/Button";
 import AuthContext from "../../context/auth";
-import Animated, { useSharedValue, useAnimatedStyle, withTiming, Easing, interpolate, Extrapolate  } from 'react-native-reanimated';
-import { Text, View, Image } from 'react-native';
+import Animated, { useSharedValue, useAnimatedStyle, withTiming, Easing, interpolate, Extrapolate } from 'react-native-reanimated';
+import { Text, View, Image} from 'react-native';
+
 
 
 const Start: FC = () => {
@@ -19,6 +20,7 @@ const Start: FC = () => {
         if (signed)
             navivgation.navigate('auth');
 
+       
         titlePosition.value = withTiming(0, {
             duration: 1000,
             easing: Easing.bounce,
@@ -32,13 +34,13 @@ const Start: FC = () => {
     );
 
 
-
+    
     const titleStyle = useAnimatedStyle(() => {
         return {
             transform: [{ translateY: titlePosition.value }],
-            opacity:interpolate(titlePosition.value,
-                [80,0],
-                [0,1],
+            opacity: interpolate(titlePosition.value,
+                [80, 0],
+                [0, 1],
                 Extrapolate.CLAMP),
         }
     });

@@ -6,7 +6,7 @@ import Menu from "../pages/menu";
 import Accont from "../pages/Accont";
 import Transactions from "../pages/Moviment";
 import AuthContext from '../context/auth';
-import axios from "axios";
+//import axios from "axios";
 
 const Tap = createBottomTabNavigator();
 
@@ -16,21 +16,21 @@ const AppRoute: React.FC = () => {
     const { id_user } = auth.user;
 
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        async function init() {
-            if (!auth.signed) {
-                try {
-                    await auth.signIn(auth.user,auth.address);
-                } catch (error) {
-                    console.log(error);
-                }
-            }
-            const response = await axios.get(`https://zuka-app.herokuapp.com/account/${id_user}`);
-            auth.account = response.data
-        }
-        init();
-    }, [])
+    //     async function init() {
+    //         if (!auth.signed) {
+    //             try {
+    //                 await auth.signIn(auth.user,auth.address);
+    //             } catch (error) {
+    //                 console.log(error);
+    //             }
+    //         }
+    //         //const response = await axios.get(`https://zuka-app.herokuapp.com/account/${id_user}`);
+    //         //auth.account = response.data
+    //     }
+    //     init();
+    // }, [])
     return (
         <Tap.Navigator screenOptions={{
             tabBarActiveTintColor: '#E1B860',
