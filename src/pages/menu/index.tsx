@@ -79,6 +79,16 @@ const Menu = () => {
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
+//        Code to Peak Information    //
+//                                    //
+//                                    //
+//                                    //
+//                                    //
+//                                    //
+//                                    //
+//                                    //
+//                                    //
+
     wait(2000).then(() => setRefreshing(false));
   }, []);
 
