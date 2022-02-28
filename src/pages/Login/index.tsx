@@ -5,7 +5,7 @@ import Button from "../../Components/Button";
 import Input from "../../Components/Input";
 import AuthContext from "../../context/auth";
 import { ActivityIndicator, Modal } from "react-native";
-import { useBottomModal, BottomModal, BottomModalRef } from 'react-native-lightning-modal';
+import { useBottomModal, BottomModal } from 'react-native-lightning-modal';
 
 
 
@@ -30,15 +30,13 @@ const Login: FC = () => {
             setStateLoad(false);
             navigation.navigate('auth');
         }
-        else {
-            setStateLoad(false);
-        }
+
     }, [])
 
     async function signIn() {
         if (email === '' || password === '') {
             setStateLoad(false);
-            setInf('Missing Data');
+            setInf('Preencha Todos Campos');
             show();
             console.warn('Missing data');
             return
@@ -47,6 +45,9 @@ const Login: FC = () => {
                 const response = await context.logar(email, password);
                 console.log(response);
             } catch (error) {
+                setStateLoad(false);
+                setInf('Email ou Password Erradas!!!');
+                show();
                 console.log(error);
             }
 
@@ -61,7 +62,6 @@ const Login: FC = () => {
     const [stateLoad, setStateLoad] = useState(false);
     const [stateSign, setStateSign] = useState(false);
     const [stateError, setStateError] = useState(false);
-    const bottomModalRef = React.useRef < BottomModalRef > null;
     const [inf, setInf] = useState('');
 
     const callSpinLoad = () => {
@@ -109,11 +109,11 @@ const Login: FC = () => {
                     </View>
                     <View style={style.context}>
                         <Text >
-                            Campos vazios para o login
+                            {inf}
                         </Text>
                     </View>
                     <View style={style.buttonClose}>
-                        <Button text="" onPress={dismiss} />
+                        <Button text="Fechar" onPress={dismiss} />
 
                     </View>
 
