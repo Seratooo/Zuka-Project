@@ -5,7 +5,7 @@ import Button from "../../Components/Button";
 import AuthContext from "../../context/auth";
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, Easing, interpolate, Extrapolate } from 'react-native-reanimated';
 import { Text, View, Image} from 'react-native';
-
+import { useBottomModal, BottomModal } from 'react-native-lightning-modal';
 
 
 const Start: FC = () => {

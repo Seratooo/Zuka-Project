@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import CardMov from '../../Components/cardMov';
 import Saldo from './Components/Saldo';
 import AuthContext from '../../context/auth';
-//import axios from 'axios';
+import axios from 'axios';
 
 
 const Menu = () => {
@@ -21,22 +21,22 @@ const Menu = () => {
   const { id_user } = context.user;
   let { setAccount } = context;
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   async function init() {
-  //     const response = await axios.get(`https://zuka-app.herokuapp.com/account/${id_user}`);
-  //     setAccounts(response.data);
-  //     if(accounts.id_account){
-  //       const responseTransation = await axios.get(`https://zuka-app.herokuapp.com/account/transation/${accounts.id_account}`);
-  //       setTransations(responseTransation.data);
+    async function init() {
+      const response = await axios.get(`https://zuka-app.herokuapp.com/account/${id_user}`);
+      setAccounts(response.data);
+      if(accounts.id_account){
+        const responseTransation = await axios.get(`https://zuka-app.herokuapp.com/account/transation/${accounts.id_account}`);
+        setTransations(responseTransation.data);
 
-  //     }
+      }
 
-  //     // console.warn(account)
-  //     setAccount(accounts);
-  //   }
-  //   init()
-  // }, [accounts]);
+      // console.warn(account)
+      setAccount(accounts);
+    }
+    //init()
+  }, [accounts]);
 
 
   const wait = (timeout) => {

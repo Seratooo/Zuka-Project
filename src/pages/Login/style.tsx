@@ -3,35 +3,31 @@ import { StyleSheet } from 'react-native';
 
 
 export const style = StyleSheet.create({
-    container: {
-        padding:25,
-        flex: 1,
-        justifyContent: 'center',
+    containerModal: {
         alignItems: 'center',
-        width:100,
-        height:100,
-        
+        flexDirection: 'column',
 
 
     },
-    errorContent:{
-        backgroundColor: 'red',
-        padding: 22,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 4,
-        borderColor: 'rgba(0, 0, 0, 0.1)',
-        width:100,
-        height:100,
+    containerImg: {
+        marginTop: 20,
+
 
     },
     buttonClose: {
-
-    },
-    bottomModal: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
         justifyContent: 'flex-end',
-        margin: 0,
+        paddingTop: 0,
+        marginTop: -20
     },
+    imgError: {
+        width: 100,
+        height: 100,
+
+    }, context: {
+        flexDirection: 'column'
+    }
 
 
 });
@@ -59,3 +55,8 @@ export const Text = styled.Text<IText>`
     color: ${props => props.title ? '#E1B860' : '#717E95'};
     font-size: ${props => props.title ? '50px' : '20px'};
 `
+
+
+
+
+

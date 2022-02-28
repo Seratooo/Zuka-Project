@@ -5,11 +5,12 @@ import Button from "../../Components/Button";
 import Input from "../../Components/Input";
 import AuthContext from "../../context/auth";
 import { ActivityIndicator, Modal } from "react-native";
+import { useBottomModal, BottomModal, BottomModalRef } from 'react-native-lightning-modal';
 
 
 
 import { View } from "../../Elements/Elements";
-import Icon from 'react-native-vector-icons/Entypo';
+//import Icon from 'react-native-vector-icons/Entypo';
 
 
 
@@ -17,6 +18,9 @@ import Icon from 'react-native-vector-icons/Entypo';
 
 
 const Login: FC = () => {
+
+    const { dismiss, show, modalProps } = useBottomModal();
+
     const navigation = useNavigation();
     const context = useContext(AuthContext);
     const [email, setEmail] = useState('');
@@ -33,7 +37,10 @@ const Login: FC = () => {
 
     async function signIn() {
         if (email === '' || password === '') {
-            console.warn('missing data');
+            setStateLoad(false);
+            setInf('Missing Data');
+            show();
+            console.warn('Missing data');
             return
         } else if ((email !== '') && (password !== '')) {
             try {
@@ -54,8 +61,8 @@ const Login: FC = () => {
     const [stateLoad, setStateLoad] = useState(false);
     const [stateSign, setStateSign] = useState(false);
     const [stateError, setStateError] = useState(false);
-
-
+    const bottomModalRef = React.useRef < BottomModalRef > null;
+    const [inf, setInf] = useState('');
 
     const callSpinLoad = () => {
         setStateLoad(true);
@@ -65,32 +72,8 @@ const Login: FC = () => {
 
     return (
 
+
         <Container>
-
-            <Modal transparent={true} visible={stateError} >
-                <View style={[style.container]}>
-                    <View style={[{ height: 300, width: 300 }]}>
-
-
-                        <View style={style.errorContent}>
-
-                        </View>
-                    </View>
-                </View>
-            </Modal>
-
-
-
-            <Modal
-
-                visible={stateSign}
-            >
-
-
-
-            </Modal>
-
-
 
             <Modal
                 transparent={true}
@@ -115,6 +98,29 @@ const Login: FC = () => {
                 />
             </ContainerInformation>
             <Button text="Login" onPress={callSpinLoad} />
+            <Button text="modal" onPress={show} />
+
+
+            <BottomModal animation='spring' backdropStyle='black' height={350} {...modalProps}>
+                <View style={style.containerModal} >
+
+                    <View style={style.containerImg} >
+                        <Image style={style.imgError} source={require('../../assets/erro.png')} />
+                    </View>
+                    <View style={style.context}>
+                        <Text >
+                            Campos vazios para o login
+                        </Text>
+                    </View>
+                    <View style={style.buttonClose}>
+                        <Button text="" onPress={dismiss} />
+
+                    </View>
+
+                </View>
+
+
+            </BottomModal>
         </Container>
 
 
