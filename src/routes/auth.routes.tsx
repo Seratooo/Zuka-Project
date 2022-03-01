@@ -44,6 +44,7 @@ export type RootStackParamList = {
         country: string;
         city: string;
         street: string;
+        balance: number;
     }
     transfer: undefined;
     payment: undefined;

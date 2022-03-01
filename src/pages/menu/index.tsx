@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Image, FlatList, View } from 'react-native';
 import { FlexRow, ContentView, TextName, FlexContent, TextSection } from './style';
@@ -7,12 +7,13 @@ import CardMov from '../../Components/cardMov';
 import Saldo from './Components/Saldo';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamListBottomTab } from '../../routes/app.routes';
+import { parse } from '@babel/core';
+import Axios from '../../services/auth';
 
 
 type Props = NativeStackScreenProps<RootStackParamListBottomTab, 'menu'>;
 
 const Menu = ({route}:Props) => {
-
   const {
     id_user,
     name,
@@ -22,10 +23,24 @@ const Menu = ({route}:Props) => {
     confirmPassword,
     country,
     city,
-    street
+    street,
+    balance,
   } = route.params
 
+  const [myBalance, setMyBalance]=useState(balance? balance: 0)
   const navigate = useNavigation();
+  
+  useEffect(()=>{
+
+    Axios.get(`/account/${id_user}`).then((Response)=>{
+      //amount
+      if(Response.data.balance!==myBalance){
+        setMyBalance(parseInt(Response.data.balance));
+      }
+    })
+    //console.warn(id_user)
+
+  },[])
 
   return (
     <>
@@ -41,16 +56,16 @@ const Menu = ({route}:Props) => {
       <ContentView>
         <FlatList
           data={[{
-            amount: '1000',
-            coin: 'usd'
-          }, {
-            amount: '100',
-            coin: 'usd'
-          },
-          {
-            amount: '',
-            coin: ''
-          }
+            amount:  ""+myBalance,
+            coin: 'AOA'
+          }//, {
+          //   amount: '100',
+          //   coin: 'usd'
+          // },
+          // {
+          //   amount: '',
+          //   coin: ''
+          // }
           ]}
           horizontal
           renderItem={({ index, item }) => <Saldo key={1} amount={item.amount} coin={item.coin} />}

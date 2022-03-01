@@ -11,12 +11,17 @@ import { RootStackParamList } from '../../routes/auth.routes';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'PersonalInformation2'>;
 
+type dataAccount = {
+  balance: number;
+}
+
 const PersonalInformation2 = ({route}:Props) => {
   const navigation = useNavigation();
   const [text, setText] = useState('');
   const [country, setCountry]=useState()
   const [city, setCity]=useState();
   const [street, setStreet]=useState();
+  const [myBalance,SetMyBalance]=useState(-1)
 
   const {
     id_user,
@@ -35,8 +40,41 @@ const PersonalInformation2 = ({route}:Props) => {
       city,
       street
     }
-    Axios.post('user/address', Data).then(()=>{
-      //console.warn(Data)
+    
+    if(myBalance==-1){
+      Axios.post('user/address', Data).then(()=>{
+        //Cria user
+        const DataAcoount = {
+          id_user,
+          coin: 'AOA'
+        }
+
+        Axios.post('/account', DataAcoount).then((Response:any)=>{
+          //cria conta
+          //console.warn(Response.data.balance);
+
+          SetMyBalance(parseInt(Response.data.balance) ? parseInt(Response.data.balance) : 0);
+            
+          navigation.navigate('auth',{
+              id_user,
+              name,
+              email,
+              dataBirthday,
+              password,
+              confirmPassword,
+              country,
+              city,
+              street,
+              balance: Response.data.balance ? Response.data.balance: 0 
+            })
+        })
+
+      })
+      
+
+
+    }else{
+      
       navigation.navigate('auth',{
         id_user,
         name,
@@ -46,9 +84,14 @@ const PersonalInformation2 = ({route}:Props) => {
         confirmPassword,
         country,
         city,
-        street
+        street,
+        balance: myBalance
       })
-    })
+
+      console.warn(myBalance)
+
+     
+    }
   }
 
   return (

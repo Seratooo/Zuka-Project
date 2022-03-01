@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Text, Image, View } from 'react-native';
 import { TopBar } from '../../Elements/Elements';
 import { Container, TextTitlePage, FlexContent, FlexRow, TextName, TextSimple, ContainerDeposit, TextMoney } from './style';
@@ -20,9 +20,11 @@ const Accont = ({route}:Props) => {
     confirmPassword,
     country,
     city,
-    street
+    street,
+    balance
   } = route.params
 
+  const [myBalance, setMyBalance]=useState(balance ? balance: 0)
   return (
     <Container>
       <TopBar>
@@ -37,7 +39,7 @@ const Accont = ({route}:Props) => {
             <TextSimple>Saldo disponível</TextSimple>
           </View>
         </FlexRow>
-        <TextName>320.000KZ</TextName>
+        <TextName>{myBalance}KZ</TextName>
       </FlexContent>
 
       <ContainerDeposit onPress={() => navigation.navigate('Deposit')}>

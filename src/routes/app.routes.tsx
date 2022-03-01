@@ -25,6 +25,7 @@ export type RootStackParamListBottomTab = {
         country: string;
         city: string;
         street: string;
+        balance: number;
     };
     Moviment:{
         id_user: string;
@@ -36,6 +37,7 @@ export type RootStackParamListBottomTab = {
         country: string;
         city: string;
         street: string;
+        balance: number;
     };
     account:{
         id_user: string;
@@ -47,6 +49,7 @@ export type RootStackParamListBottomTab = {
         country: string;
         city: string;
         street: string;
+        balance: number;
     };
 
   };
@@ -61,7 +64,8 @@ const AppRoute = ({route}:Props) => {
         confirmPassword,
         country,
         city,
-        street
+        street,
+        balance
     } = route.params
 
     return (
@@ -84,7 +88,8 @@ const AppRoute = ({route}:Props) => {
                     confirmPassword,
                     country,
                     city,
-                    street
+                    street,
+                    balance
                 }} 
                 
                 />
@@ -105,7 +110,8 @@ const AppRoute = ({route}:Props) => {
                     confirmPassword,
                     country,
                     city,
-                    street
+                    street,
+                    balance
                 }} 
                 />
 
@@ -125,7 +131,8 @@ const AppRoute = ({route}:Props) => {
                     confirmPassword,
                     country,
                     city,
-                    street
+                    street,
+                    balance
                 }} 
                 />
         </Tap.Navigator>
